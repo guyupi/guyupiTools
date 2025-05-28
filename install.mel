@@ -1,0 +1,64 @@
+/*
+#----------------------------------------------------------------------
+# 创建时间    : 2025年5月13日14:21:39
+# 制作者  : 徐豪强
+# 联系    : 457447706@qq.com
+#
+#----------------------------------------------------------------------
+*/
+
+//获取工具架的名称存储在currentShelf内
+global string $gShelfTopLevel;
+string $currentShelf = `tabLayout -query -selectTab $gShelfTopLevel`;
+setParent $currentShelf;
+
+//脚本名称
+string $scriptName="skinTool";
+global proc foundScriptLocator(){}
+
+//通过python，来获取项目路径信息
+string $whatIs = `whatIs foundScriptLocator`;
+
+python("path = '"+ $whatIs +"'");
+python("fullPath=path[24:]");
+
+python("projectPath = fullPath.rpartition(\"guyupiTools\")[0]");
+python("def returnPathStr(path):\n    return path");
+/*这里填写的是文件启动的时候调用的文件路径*/
+string $finalPath = python("returnPathStr(projectPath)"); // 工具文件名称的上一个层级
+string $DevPath = $finalPath + "guyupiTools/UI/";
+
+
+//get maya version
+string $mayaVersion = `about -v`;
+//get maya language
+string $mayaLanguagePath = `about -localizedResourceLocation`;
+python("path = '"+$mayaLanguagePath+"'");
+string $mayaLanguage = python("path.split('/')[-1]");
+
+// create scripts add to maya shelf
+/*这里写启动代码*/
+string $command1 = "import sys\nif not sys.path.__contains__('"+$finalPath+"'):\n    sys.path.insert(0, '"+$finalPath+"')\n";
+string $command2 = "if not sys.path.__contains__('"+$DevPath+"'):\n    sys.path.insert(0, '"+$DevPath+"')\n";
+string $command3 = "import guyupiTools.UI.weightToolUiMain as weightTool\nreload(weightTool)\n";
+string $command4 = "weightTool.show()";
+
+
+string $command = $command1 + $command2 + $command3 + $command4;
+/*这里需要替换图标路径*/
+
+string $icon=$finalPath+"guyupiTools/icon/tooliocn/ToolsIcon.png";
+
+shelfButton
+    -width 34
+    -height 34
+    -command $command
+    -annotation $scriptName
+    -label $scriptName
+    -image $icon
+    -imageOverlayLabel "guyupiTools"
+    -marginWidth 1
+    -marginHeight 1
+    -style "iconOnly"
+    -sourceType "python"
+;

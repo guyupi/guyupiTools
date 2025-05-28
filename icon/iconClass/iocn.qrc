@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="png">
+    <file>curveshape/ArrowCurve.jpg</file>
+    <file>curveshape/CrossControl.jpg</file>
+    <file>curveshape/CrownCurve.jpg</file>
+    <file>curveshape/CubeCurve.jpg</file>
+    <file>curveshape/cubeOnBase.jpg</file>
+    <file>curveshape/Diamond.jpg</file>
+    <file>curveshape/FistCurve.jpg</file>
+    <file>curveshape/FootControl.jpg</file>
+    <file>curveshape/MoveControl.jpg</file>
+    <file>curveshape/RotationControl.jpg</file>
+    <file>curveshape/round.jpg</file>
+    <file>curveshape/singleRotateControl.jpg</file>
+    <file>curveshape/SliderControl.jpg</file>
+    <file>curveshape/SpikeCrossControl.jpg</file>
+    <file>curveshape/squareControl.jpg</file>
+    <file>curveshape/unitSliderControl.jpg</file>
+  </qresource>
+</RCC>
