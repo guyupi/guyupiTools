@@ -38,6 +38,8 @@ def undoChunk_wrapper(fn):  # wrapper 装饰器的名字，fn被装饰的函数�
 
     return inner  # 用来代替原函数
 
+
+
 #UI窗口类
 class ReNameUI(QWidget ,UI.Ui_RenameTool):  # 继承编译好的.py类
 
