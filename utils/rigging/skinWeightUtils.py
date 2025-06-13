@@ -1,11 +1,14 @@
 # coding=utf-8
 import os
 import maya.OpenMaya as om
+from PySide2 import QtWidgets, QtCore
 import maya.OpenMayaAnim as oma
 import maya.cmds as cmds
 import maya.mel as mel
 import csv
 import arcUtils as  arc
+from ...UI.uiClass import QDialogClass as dialog
+reload(dialog)
 
 class base_Api():
 
@@ -561,17 +564,13 @@ class copySkinWeiTool(SkinWeight , arc.baseFunTool):
 
                 cmds.copySkinWeights(objA, objB[0], noMirror=True, surfaceAssociation="closestPoint",
                                          influenceAssociation="oneToOne")
-
+                print (u"复制成功")
             elif obj_type == "nurbsSurface":
 
                 newSkin = self.get_SkinNode(objB[0])
                 vtx_poly = cmds.select(objA + '.vtx[0:]', r=1)
                 vtx_srf = cmds.select(objB[0] + ".cv[0:][0:]", add=1)
                 cmds.copySkinWeights(nm=1, sa='closestPoint', ia='closestJoint')
-
-
-
-
 
 
         return True
@@ -582,9 +581,23 @@ class copySkinWeiTool(SkinWeight , arc.baseFunTool):
         objB = args[-1]
         inf_jointlist = []
 
+        unskin_mesh = []
+
+        for mesh in objAList:
+            if not self.get_SkinNode(mesh):
+
+                unskin_mesh.append(mesh)
+
+        # print unskin_mesh
+        # if unskin_mesh:
+        #     dialog_win = dialog.BaseDialog(u"以下模型没有蒙皮节点" ,u"{}".format(unskin_mesh) )
+        #     win = QtWidgets.QMessageBox()
+
         #获取影响骨骼
         for obj in objAList:
-            inf_jointlist.extend(self.get_infJointList(obj))
+            if obj in unskin_mesh:
+                inf_jointlist.extend(self.get_infJointList(obj))
+
         #获取之后去除重复骨骼
         inflist = list(set(inf_jointlist))
         #获取目标模型是否有权重
@@ -603,6 +616,7 @@ class copySkinWeiTool(SkinWeight , arc.baseFunTool):
             cmds.select(objB ,add = 1)
             #mel.eval( "copySkinWeightsCallback OptionBoxWindow|formLayout154|tabLayout12|formLayout156|tabLayout17|columnLayout109 1;")
             mel.eval("copySkinWeights  -noMirror -surfaceAssociation closestPoint -influenceAssociation oneToOne -influenceAssociation closestJoint -influenceAssociation closestBone;")
+
 
 copySkinTool = copySkinWeiTool()
 skinTool  = SkinWeight()

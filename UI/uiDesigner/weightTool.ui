@@ -19,9 +19,9 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,8">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1,1,1,1,1,1,1,1,1,1,1,1">
+        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0,0,0,0,0,0">
          <item>
-          <widget class="QPushButton" name="skin_Button">
+          <widget class="QToolButton" name="skin_Button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -37,7 +37,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="copy_Skin_oneTomore_Button">
+          <widget class="QToolButton" name="copy_Skin_oneTomore_Button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -53,7 +53,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="copy_Skin_moreToone_Button">
+          <widget class="QToolButton" name="copy_Skin_moreToone_Button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -69,7 +69,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="MirrorWeightButton01">
+          <widget class="QToolButton" name="MirrorWeightButton01">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -85,7 +85,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="MirrorWeightButton01_2">
+          <widget class="QToolButton" name="MirrorWeightButton01_2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -101,7 +101,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="add_inf_Button">
+          <widget class="QToolButton" name="add_inf_Button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -117,7 +117,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="remove_inf_button">
+          <widget class="QToolButton" name="remove_inf_button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -133,7 +133,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="copyPointWeiButton">
+          <widget class="QToolButton" name="copyPointWeiButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -149,7 +149,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="patePointSkinWeiButton">
+          <widget class="QToolButton" name="patePointSkinWeiButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -165,7 +165,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="hammer_wei_button">
+          <widget class="QToolButton" name="hammer_wei_button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -181,7 +181,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="resetSkinNodeBt">
+          <widget class="QToolButton" name="resetSkinNodeBt">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -203,7 +203,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="export_skinWei_Button">
+          <widget class="QToolButton" name="export_skinWei_Button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
@@ -219,7 +219,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="import_skinWei_Button">
+          <widget class="QToolButton" name="import_skinWei_Button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>

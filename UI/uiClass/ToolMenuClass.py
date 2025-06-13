@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import sys
 from PySide2.QtWidgets import QApplication, QMainWindow, QWidget
 from PySide2.QtCore import Qt, QPoint, QRect, QTimer

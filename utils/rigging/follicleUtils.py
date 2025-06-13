@@ -221,8 +221,10 @@ class Follicle(object):
 
             meshList.append(meshTemp)
         # 合并所有的面
-        meshEnd = cmds.polyUnite(meshList, ch=0)[0]
-
+        if len(meshList) > 1:
+            meshEnd = cmds.polyUnite(meshList, ch=0)[0]
+        else:
+            meshEnd = meshList[0]
         # 展开mehs集合体的UV
         cmds.polyMultiLayoutUV(meshEnd + ".f[0:" + str(len(objList) - 1) + "]", lm=1, sc=1, rbf=1, fr=1, ps=0.2, l=2,
                                gu=1, gv=1, psc=0, su=1, sv=1)

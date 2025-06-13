@@ -6,7 +6,7 @@ import maya.mel as mel
 # 选中根骨骼 创建出一条简模
 def buid_meshJM(joint, JMwidth, direction , headOffect = False ,smooth = True):
 
-    # 选中骨骼
+    # 选中transform节点
     jointList = cmds.ls(joint, dag=True, type='joint')
 
     for jointHead in joint:

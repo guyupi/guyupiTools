@@ -15,7 +15,6 @@ class PluginSettingsManager(object):
     def __init__(self, plugin_name):
         """
         初始化设置管理器
-
         :param plugin_name: 插件名称，用于创建唯一的设置存储路径
         """
         self.plugin_name = plugin_name
@@ -28,7 +27,6 @@ class PluginSettingsManager(object):
     def _get_settings_folder(self):
         """
         获取插件设置存储的文件夹路径
-
         :return: 设置文件夹的完整路径
         """
         maya_app_dir = cmds.internalVar(userAppDir=True)
@@ -37,7 +35,6 @@ class PluginSettingsManager(object):
     def save_setting(self, setting_name, data):
         """
         保存设置到文件
-
         :param setting_name: 设置名称(将用作文件名)
         :param data: 要保存的数据(可以是字典、列表等可JSON序列化的数据)
         :return: 保存的文件路径
@@ -55,7 +52,6 @@ class PluginSettingsManager(object):
     def load_setting(self, setting_name, default=None):
         """
         从文件加载设置
-
         :param setting_name: 要加载的设置名称
         :param default: 如果设置不存在时返回的默认值
         :return: 加载的数据或默认值

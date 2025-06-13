@@ -80,9 +80,9 @@ class ReNameUI(QWidget ,UI.Ui_RenameTool):  # 继承编译好的.py类
         if range == 0:
             objList = cmds.ls(sl=1)
         elif range == 1:
-            objList = cmds.ls(sl=1, dag=1)
+            objList = cmds.ls(sl = 1 , dag=True, long=True ,type = "transform")
         else:
-            objList = cmds.ls(assemblies=True ,dag = 1)
+            objList = cmds.ls(assemblies=True , dag = 1)
 
         return objList
 

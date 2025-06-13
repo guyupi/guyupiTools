@@ -27,7 +27,6 @@ class ReName():
         return uuid
 
     def get_longNameByName(self,name):
-        print "mingzishi" ,name
         longName = cmds.ls(name,long = True)[0]
         return longName
 
@@ -59,7 +58,6 @@ class ReName():
 
         #获取uuid的列表
         uuidList = self.get_uuidList(*objList)
-
 
         for obj ,uuid in zip(objList,uuidList):
 

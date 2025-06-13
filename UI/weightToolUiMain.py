@@ -73,7 +73,6 @@ class SkinWeightUI(QWidget, ui.Ui_weigthTool ):  # 继承编译好的.py类
     def save_settings(self):
         # 保存UI状态
         self.settings.save_ui_settings(self)
-        cmds.warning("Settings saved!")
 
     def load_settings(self):
         # 加载UI状态
@@ -82,13 +81,19 @@ class SkinWeightUI(QWidget, ui.Ui_weigthTool ):  # 继承编译好的.py类
     def closeEvent(self, event):
         # 窗口关闭时自动保存设置
         self.save_settings()
-        super(SkinWeightUI, self).closeEvent(event)
+        super(QWidget, self).closeEvent(event)
 
     def listNumLabel(self):
-        countA = self.left_listWidget.count()
-        self.left_ListNu_Label.setText(str(countA))
-        countB = self.right_listWidget.count()
-        self.right_ListNu_Label.setText(str(countB))
+        # countA = self.left_listWidget.count()
+
+        # self.left_ListNu_Label.setText(str(countA))
+        # countB = self.right_listWidget.count()
+        # self.right_ListNu_Label.setText(str(countB))
+        left_widgt_count_tool = lv.ListWidgetHelper()
+        left_widgt_count_tool.bind_count_changed(self.left_listWidget, lambda num: self.left_ListNu_Label.setText(str(num)))
+        right_widgt_count_tool = lv.ListWidgetHelper()
+        right_widgt_count_tool.bind_count_changed(self.right_listWidget, lambda num: self.right_ListNu_Label.setText(str(num)))
+
 
     def setConnect(self):
         #Button clicked
@@ -110,7 +115,7 @@ class SkinWeightUI(QWidget, ui.Ui_weigthTool ):  # 继承编译好的.py类
         self.hammer_wei_button.clicked.connect(self.hammer_wei)
         self.copySkinWeiButton.clicked.connect(self.copySkinWeight)
         self.resetSkinNodeBt.clicked.connect(self.resetSkinNode)
-
+        self.clear_ObjList_Button.clicked.connect(self.clear_ViewObjList)
     #设置按钮图标
     def set_icon(self):
 
@@ -118,18 +123,19 @@ class SkinWeightUI(QWidget, ui.Ui_weigthTool ):  # 继承编译好的.py类
         self.remove_inf_button.setIcon(QIcon("removeWrapInfluence.png"))
         self.add_inf_Button.setIcon(QIcon("addWrapInfluence.png"))
 
-
-
-
-
-
+    def clear_ViewObjList(self):
+        self.left_listWidget.clear()
+        self.right_listWidget.clear()
 
     #listVisw列表设置
     def setListVisw(self):
-        self.left_listWidget = lv.MyListWidget()
-        self.right_listWidget = lv.MyListWidget()
+        lift_type = "mesh"
+        right_type = "mesh" ,"nurbsSurface" , "nurbsCurve"
+        self.left_listWidget = lv.MyListWidget(lift_type)
+        self.right_listWidget = lv.MyListWidget(*right_type)
         self.horizontalLayout_8.addWidget(self.left_listWidget)
         self.horizontalLayout_8.addWidget(self.right_listWidget)
+
 
     def addRightVisw_mode(self):
         allObj = cmds.ls(sl=1)
@@ -137,13 +143,11 @@ class SkinWeightUI(QWidget, ui.Ui_weigthTool ):  # 继承编译好的.py类
         mesh = filter.GetFilter(allObj,"mesh",False)
         self.left_listWidget.addItem("add")
         self.left_listWidget.addItem("add")
-        print(mesh)
 
     @undoChunk_wrapper
     def MirrorWeight(self):
         str = " -mirrorMode YZ -surfaceAssociation closestPoint -influenceAssociation oneToOne -influenceAssociation closestJoint"
         mel.eval("doMirrorSkinWeightsArgList( 2, { \" " + str + " \" } );")
-
 
     @undoChunk_wrapper
     def MirrorWeightRev(self):
@@ -219,7 +223,6 @@ class SkinWeightUI(QWidget, ui.Ui_weigthTool ):  # 继承编译好的.py类
 
                 pointList = self.left_listWidget.item(objnum).text().split("->")
 
-
                 if   pm.mel.findRelatedSkinCluster(pointList[0]) == "":
                     cmds.error("object don`t have skinNode")
                     cmds.delete(tempmesh)
@@ -275,7 +278,6 @@ class SkinWeightUI(QWidget, ui.Ui_weigthTool ):  # 继承编译好的.py类
             meshList = Get.filterObjs
         for mesh in meshList:
             skinToolUtils.skinTool.reset_skin_node(mesh)
-
 
     @undoChunk_wrapper
     def reomveZeroWeiJoint(self):

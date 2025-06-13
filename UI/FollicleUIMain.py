@@ -82,7 +82,7 @@ class FollicleTool(QWidget,follicleUi.Ui_FollicleTool):
     def createPlane(self):
         # 获取创建简模所需要的参数，法线方向，宽度，骨骼
         buttonId = self.buttonGroup.checkedId()
-        jointList = cmds.ls(sl = 1,type = "joint")
+        jointList = cmds.ls(sl = 1)
         meshWidth = self.widthSpinBox.value()
         smooth = self.smoothCB.isChecked()
         headOffect = self.extrusionCB.isChecked()

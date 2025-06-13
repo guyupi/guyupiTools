@@ -11,12 +11,11 @@ class baseFunTool(object):
 
     def __init__(self):
         pass
-
     #获取obj的形状节点
     def get_shape(self,object_name):
         try:
             # 获取物体的形状节点
-            shape_nodes = cmds.listRelatives(object_name, shapes=True)[0]
+            shape_nodes = cmds.listRelatives(object_name, shapes=True )[0]
 
             if shape_nodes:
                 return shape_nodes
@@ -30,7 +29,6 @@ class baseFunTool(object):
 
         obj_shape = self.get_shape(obj)
         if obj_shape:
-
             type = cmds.nodeType(obj_shape)
             return type
         else:
@@ -60,6 +58,43 @@ class baseFunTool(object):
         else:
             type = cmds.nodeType(object_name)
             return type
+
+    def select_list_to_dic(self ,obj_List):
+        """
+        通过选中的列表，将列表进行整理，转化为一个，区分整体与部分的字典
+        :param obj_List:
+        :return:
+        """
+        obj_dic = {}
+
+        for obj in obj_List:
+
+            # if isinstance(obj , str):
+            if "." in obj:
+                obj_node_name ,obj_attr_or_Part = obj.split(".")
+                if obj_node_name not in obj_dic:
+                    obj_dic[obj_node_name] = [obj_attr_or_Part]
+                else:
+                    obj_dic[obj_node_name].append(obj_attr_or_Part)
+            else:
+                if obj not in obj_dic:
+                    obj_dic[obj] = None
+                else:
+                    continue
+
+        return obj_dic
+
+    def dic_to_list(self , dic):
+        obj_list = []
+        for key ,Value in dic.items():
+            if Value:
+                for attr_or_part in Value:
+                    obj_attr_or_part = "{}.{}".format(key, attr_or_part)
+                    obj_list.append(obj_attr_or_part)
+
+            else:
+                obj_list.append(key)
+        return obj_list
 
 # 筛选所需要的节点
 class Filter(baseFunTool):
